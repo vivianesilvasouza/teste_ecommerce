@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
   name: 'Home',
@@ -29,15 +30,11 @@ export default {
       
     }
   },
-  computed: {
-    products () {
-      return this.$store.state.products;
-    },
-     productsInBag () {
-      return this.$store.state.productsInBag;
-    },
-  },
-
+  computed: 
+    mapState ([
+      'products', 'productsInBag'
+    ]),
+  
   methods: {
     addtoBag(product){
       product.quantity = 1;
