@@ -3,12 +3,18 @@
     <div class="products">
       <div 
       v-for="(product, index) in this.products" :key="index"
-      class="product">
+      class="product"
+      :class="{inBag : isInBag(product)}">
           <div class="product-image" :style="{backgroundImage: 'url(' + product.image + ')'}"></div>
         <h3>{{product.title}}</h3>
         <h4>{{product.category}}</h4>
         <p class="price">{{product.price.toFixed(2)}}</p>
         <button v-if="!isInBag(product)" @click="addtoBag(product)">Adicionar ao carrinho</button>
+        <button
+         v-else
+          class="remove"
+          @click="this.$store.dispatch('removeFromBag', product.id)"
+          >Remover o produto do carrinho</button>
       </div>
     </div>
   </div>
