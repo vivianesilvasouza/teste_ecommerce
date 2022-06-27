@@ -1,13 +1,15 @@
 <template>
   <div class="home">
     <div class="products">
-
-      <div class="product">
-        <div class="product-image" style="background-image: url('https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg');"></div>
-        <h4>Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</h4>
-        <p class="price">R$ 109.95</p>
+      <div 
+      v-for="(product, index) in this.products" :key="index"
+      class="product">
+          <div class="product-image" :style="{backgroundImage: 'url(' + product.image + ')'}"></div>
+        <h3>{{product.title}}</h3>
+        <h4>{{product.category}}</h4>
+        <p class="price">{{product.price.toFixed(2)}}</p>
         <button>Adicionar ao carrinho</button>
-      </div>
+      </div>no-repeat
     </div>
   </div>
 </template>
