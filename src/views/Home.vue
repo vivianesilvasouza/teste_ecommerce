@@ -8,7 +8,7 @@
         <h3>{{product.title}}</h3>
         <h4>{{product.category}}</h4>
         <p class="price">{{product.price.toFixed(2)}}</p>
-        <button @click="addtoBag(product)">Adicionar ao carrinho</button>
+        <button v-if="!isInBag(product)" @click="addtoBag(product)">Adicionar ao carrinho</button>
       </div>
     </div>
   </div>
@@ -37,6 +37,9 @@ export default {
       product.quantity = 1;
       this.$store.dispatch('addtoBag', product);
 
+    },
+    isInBag(product){
+      return this.productsInBag.find(item => item.id == product.id)
     }
    
   }
@@ -51,7 +54,6 @@ export default {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-
 
       .product {
         flex: 0 0 30%;
