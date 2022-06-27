@@ -5,6 +5,7 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     products: [],
+    productsInBag:[]
   },
   getters: {
   },
@@ -12,6 +13,10 @@ export default createStore({
     loadProducts (state, products) {
       state.products = products;
     },
+    addtoBag(state, product){
+      state.productsInBag.push(product);
+    }
+
   },
   actions: {
     loadProducts({ commit }) {
@@ -21,6 +26,10 @@ export default createStore({
         commit('loadProducts', response.data);
       })
     },
+
+    addtoBag({ commit }, product){
+        commit('addtoBag', product);
+    }
   },
   modules: {
   }

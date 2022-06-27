@@ -8,8 +8,8 @@
         <h3>{{product.title}}</h3>
         <h4>{{product.category}}</h4>
         <p class="price">{{product.price.toFixed(2)}}</p>
-        <button>Adicionar ao carrinho</button>
-      </div>no-repeat
+        <button @click="addtoBag(product)">Adicionar ao carrinho</button>
+      </div>
     </div>
   </div>
 </template>
@@ -27,10 +27,17 @@ export default {
     products () {
       return this.$store.state.products;
     },
+     productsInBag () {
+      return this.$store.state.productsInBag;
+    },
   },
 
-
   methods: {
+    addtoBag(product){
+      product.quantity = 1;
+      this.$store.dispatch('addtoBag', product);
+
+    }
    
   }
 }
