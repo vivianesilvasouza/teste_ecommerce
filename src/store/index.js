@@ -5,13 +5,18 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     products: [],
-    productsInBag:[]
+    productsInBag:[],
+    loadCategories:[]
+   
   },
   getters: {
   },
   mutations: {
     loadProducts (state, products) {
       state.products = products;
+    },
+    loadCategories(state, categories) {
+      state.categories = categories;
     },
     addtoBag(state, product){
       state.productsInBag.push(product);
@@ -30,9 +35,16 @@ export default createStore({
         commit('loadProducts', response.data);
       })
     },
+    loadCategories({ commit }){
+      axios
+      .get('https://fakestoreapi.com/products/categories')
+      .then(response => {
+        commit('loadCategories', response.data);
+      })
+    },
 
     addtoBag({ commit }, product){
-        commit('addtoBag', product);
+      commit('addtoBag', product);
     },
 
     removeFromBag({ commit }, productId){

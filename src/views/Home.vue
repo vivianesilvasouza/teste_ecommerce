@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+  
     <div class="products">
       <div 
       v-for="(product, index) in this.products" :key="index"
@@ -32,7 +33,7 @@ export default {
   },
   computed: 
     mapState ([
-      'products', 'productsInBag'
+      'products', 'productsInBag','loadCategories'
     ]),
   
   methods: {
@@ -43,7 +44,13 @@ export default {
     },
     isInBag(product){
       return this.productsInBag.find(item => item.id == product.id)
-    }
+    },
+    filteredItems(loadCategories){
+      const filteredItems = this.products.filter((item)=>{
+        return item.loadCategories == loadCategories;
+      })
+     
+   }
    
   }
 }
