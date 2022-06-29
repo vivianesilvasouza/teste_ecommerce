@@ -17,6 +17,7 @@
               </div>
             </div>
             <div class="grand-total"> Total do pedido: R$ {{orderTotal()}}</div>
+             <button class="button"><span>Finalizar Pedido </span></button>
         </template>
 
         <template v-else>
@@ -123,6 +124,58 @@ export default {
       }
 
   }
+//estilo para botão finalizar pedido
+.button {
+    border-radius: 4px;
+    background-color: #e908b1;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    padding: 20px;
+    width: 200px;
+    cursor: pointer;
+    margin: 5px;
+}
+  .button span:after {
+    content: "\00bb";
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+.button span {
+    position: relative;
+    transition: 0.5s;
+}
+//Efeito ao passar o mouse
+.button:hover span {
+    padding-right: 25px;
+}
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+//Colocando a seta
+.button span:after {
+    content: "\00bb";
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+//Efeito ao passar o mouse
+.button:hover span {
+    padding-right: 25px;
+}
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
 
 }
 
