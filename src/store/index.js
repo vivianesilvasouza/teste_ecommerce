@@ -6,8 +6,7 @@ export default createStore({
   state: {
     products: [],
     productsInBag:[],
-    loadCategories:[]
-   
+    categories:[],
   },
   getters: {
   },
@@ -21,10 +20,13 @@ export default createStore({
     addtoBag(state, product){
       state.productsInBag.push(product);
     },
+    setProducts(state, products){
+      state.productsSelected = products
+    },
+
     loadProductsCategory(state, category){
       const products = state.products.filter(p => p.category === category)
       state.productsCategory = products;
-      console.log(products);
     },
     removeFromBag(state, productId){
       let updatedBag = state.productsInBag.filter(item => productId != item.id)
@@ -56,9 +58,9 @@ export default createStore({
       commit('removeFromBag', productId)
     },
     filteredItems({ commit }, category){
-      console.log(category);
       commit('loadProductsCategory', category)
-   }
+   },
+
   },
   modules: {
   }

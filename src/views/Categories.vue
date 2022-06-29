@@ -33,7 +33,7 @@ export default {
   },
   computed: 
     mapState ([
-      'products', 'productsInBag','loadCategories','productsCategory'
+      'productsInBag','categories','productsCategory'
     ]),
   
   methods: {
