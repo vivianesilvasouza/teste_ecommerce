@@ -1,38 +1,37 @@
 <template>
   <div id="nav">
     <div class="logo">
-    <div class="text">Yampi
-    </div>
-</div>
-  <div class="item search right" tabindex="0">
-    <div class="search-group">
-      
-    <input type="text">
-    <i class="material-icons search-icon">
-      search
-    </i>
+      <div class="text">Yampi
       </div>
-  </div>
-
-   <a href="" class="item">
-    <div class="group">
-      <router-link to="/basket">
-        <i class="material-icons">
-          shopping_cart
-        </i>
-      
-     
-       ({{this.productsInBag.length}})
-      </router-link>  
     </div>
-  </a>
-    <router-link to="/">Início</router-link> -
-   
-     <ul v-for="item in this.categories" :key="item">
-         <li @click="filteredItems(item)">{{item}}</li>
-      </ul>
-  </div> 
-  <router-view />
+    <div class="item search right" tabindex="0">
+      <div class="search-group">
+
+        <input type="text">
+        <i class="material-icons search-icon">
+          search
+        </i>
+      </div>
+    </div>
+
+    <a href="" class="item">
+      <div class="group">
+        <router-link to="/basket">
+          <i class="material-icons">
+            shopping_cart
+          </i>
+          ({{ this.productsInBag.length }})
+        </router-link>
+      </div>
+    </a>
+    <router-link to="/">Home</router-link> -
+      <ul v-for="item in this.categories" :key="item">
+        <router-link :to="'/Categories/'+ item" @click="this.$store.dispatch('filteredItems', item)">
+          <li>{{ item }}</li>
+        </router-link>
+      </ul> </div>
+    <router-view />
+ 
 </template>
 
 <script>
@@ -41,14 +40,18 @@ import { mapState } from 'vuex'
 
 export default {
 
-  created() {
-     this.$store.dispatch('loadProducts');
-     this.$store.dispatch('loadCategories');
+  methods: {
+
   },
 
- computed: 
-    mapState ([
-    'productsInBag','categories'
+  created() {
+    this.$store.dispatch('loadProducts');
+    this.$store.dispatch('loadCategories');
+  },
+
+  computed:
+    mapState([
+      'productsInBag', 'categories'
     ]),
 };
 </script>
@@ -57,6 +60,7 @@ export default {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -77,149 +81,136 @@ export default {
   text-align: center;
   background-color: rgb(37, 37, 37);
   color: white;
-
- 
   margin: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
   box-sizing: border-box;
 
-.navbar {
-  display: flex;
-  box-shadow: 0 0 2px 0 grey;
-  align-items: center;
-  font-size: 1em;
-  
-  background-color:#3761af;
-  background-color: var(--theme-bg-color);
-  
-  color: white;
-  color: var(--theme-color);
-  
+  .item {
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    color: var(--theme-color);
 
-}
+  }
 
-.item{
-  padding: 10px;
-  text-decoration: none;
-  color: white;
-  color: var(--theme-color);
+  .item.right {
+    margin: 0 0 0 auto;
+  }
 
-}
+  .navbar .logo {
+    font-size: 1.2em;
+    align-items: center;
+    display: flex;
+  }
 
-.item.right {
-  margin: 0 0 0 auto;
-}
+  .logo img {
+    max-width: 40px;
+  }
 
-.navbar .logo {
-  font-size: 1.2em;
-  align-items: center;
-  display: flex;
-}
+  .logo .text {
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: 600;
+  }
 
-.logo img {
-  max-width: 40px;
-}
-.logo .text {
-  margin-left: 20px;
-  font-size:30px;
-  font-weight: 600;
-}
-.item.search {
-  transition: 0.2s linear;
-  display:flex;
-  justify-content: center;
-  flex-grow:1;
-  
-}
-.item.search .search-icon {
-  border-left: 1px solid grey;
-  margin: 2px;
-  padding-left: 10px;
-  cursor:pointer;
-  color: grey;
-}
-.item.search .search-icon:hover {
-  
-  color: black;
-}
+  .item.search {
+    transition: 0.2s linear;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
 
-.item.search input {
-  width: 100%;
-  padding: 6px ;
-  outline: none;
-  border: 2px solid grey; 
-  max-width: 100%;
-  border: 0;
-}
+  }
 
-.item .search-group {
-  display:flex;
-  width: 100%;
-  max-width: 700px;
-  border-radius: 20px;
-  border: 2px solid grey;
-  overflow: hidden;
-  background: white;
-  
-  border-color: white;
-  color: var(--theme-color);
+  .item.search .search-icon {
+    border-left: 1px solid grey;
+    margin: 2px;
+    padding-left: 10px;
+    cursor: pointer;
+    color: grey;
+  }
 
-}
-.item .search-group select{
+  .item.search .search-icon:hover {
 
-  border: 0;
-  margin: 2px;
-  border-right: 1px solid grey;
-  max-width: 5em;
-  outline: none;
-  color: grey;
-  
-}
+    color: black;
+  }
 
-.item .group {
-  display:flex;
-  align-items: center;
-  font-size: 0.9em;
-  float: right;
-  margin: 10px;
-}
-
-
-.item .group .sub{
-  font-size: 0.8em;
-
-
-}
-
-.material-icons {
-  font-size:1.8rem;
-}
-
-
-.menu-icon{
-  display:none;
-}
-
-@media (max-width: 700px) {
   .item.search input {
+    width: 100%;
+    padding: 6px;
+    outline: none;
+    border: 2px solid grey;
+    max-width: 100%;
+    border: 0;
+  }
+
+  .item .search-group {
+    display: flex;
+    width: 100%;
+    max-width: 700px;
+    border-radius: 20px;
+    border: 2px solid grey;
+    overflow: hidden;
+    background: white;
+
+    border-color: white;
+    color: var(--theme-color);
+
+  }
+
+  .item .search-group select {
+
+    border: 0;
+    margin: 2px;
+    border-right: 1px solid grey;
+    max-width: 5em;
+    outline: none;
+    color: grey;
+
+  }
+
+  .item .group {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    float: right;
+    margin: 10px;
+  }
+
+
+  .item .group .sub {
+    font-size: 0.8em;
+  }
+
+  .material-icons {
+    font-size: 1.8rem;
+  }
+
+  .menu-icon {
     display: none;
   }
-  .menu-icon {
-    display:block;
-  }
-  .detail,.logo .text {
-    display:none;
+
+  @media (max-width: 700px) {
+    .item.search input {
+      display: none;
+    }
+
+    .menu-icon {
+      display: block;
+    }
+
+    .detail,
+    .logo .text {
+      display: none;
+
+    }
 
   }
 
-
-}
-
-.action-btn{
-  background-color:transparent;
-  border: none;
-}
+  .action-btn {
+    background-color: transparent;
+    border: none;
+  }
 
   a {
     color: white;
@@ -229,6 +220,7 @@ export default {
       color: #007bff;
     }
   }
+
   ul {
     text-align: center;
     list-style-type: none;
@@ -236,18 +228,22 @@ export default {
     margin: 0;
     padding: 15px;
     display: inline;
-     li {
+
+    li {
       display: inline;
       font-family: "Fira Sans", sans-serif;
       font-size: 17px;
+
       a {
         color: #f2f2f2;
         text-decoration: none;
         padding: 14px;
+
         &:hover {
           background-color: #111;
         }
       }
     }
-}}
+  }
+}
 </style>

@@ -3,7 +3,7 @@
   
     <div class="products">
       <div 
-      v-for="(product, index) in this.products" :key="index"
+      v-for="(product, index) in this.productsCategory" :key="index"
       class="product"
       :class="{inBag : isInBag(product)}">
           <div class="product-image" :style="{backgroundImage: 'url(' + product.image + ')'}"></div>
@@ -25,7 +25,7 @@
 import { mapState } from 'vuex'
 
 export default {
-  name: 'Home',
+  name: 'Categories',
   data() {
     return {
       
@@ -33,7 +33,7 @@ export default {
   },
   computed: 
     mapState ([
-      'products', 'productsInBag','loadCategories'
+      'products', 'productsInBag','loadCategories','productsCategory'
     ]),
   
   methods: {

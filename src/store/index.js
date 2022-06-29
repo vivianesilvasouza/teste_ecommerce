@@ -21,6 +21,11 @@ export default createStore({
     addtoBag(state, product){
       state.productsInBag.push(product);
     },
+    loadProductsCategory(state, category){
+      const products = state.products.filter(p => p.category === category)
+      state.productsCategory = products;
+      console.log(products);
+    },
     removeFromBag(state, productId){
       let updatedBag = state.productsInBag.filter(item => productId != item.id)
       state.productsInBag = updatedBag;
@@ -49,7 +54,11 @@ export default createStore({
 
     removeFromBag({ commit }, productId){
       commit('removeFromBag', productId)
-    }
+    },
+    filteredItems({ commit }, category){
+      console.log(category);
+      commit('loadProductsCategory', category)
+   }
   },
   modules: {
   }
