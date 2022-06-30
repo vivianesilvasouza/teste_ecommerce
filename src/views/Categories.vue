@@ -9,7 +9,7 @@
           <div class="product-image" :style="{backgroundImage: 'url(' + product.image + ')'}"></div>
         <h3>{{product.title}}</h3>
         <h4>{{product.category}}</h4>
-        <p class="price">{{product.price.toFixed(2)}}</p>
+        <p class="price">R$ {{formatPrice(product.price) }}</p>
         <button v-if="!isInBag(product)" @click="addtoBag(product)">Adicionar ao carrinho</button>
         <button
          v-else
@@ -44,6 +44,10 @@ export default {
     },
     isInBag(product){
       return this.productsInBag.find(item => item.id == product.id)
+    },
+    formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     }
    
    

@@ -6,7 +6,7 @@
                 <div class="product-image" :style="{ backgroundImage: 'url(' + product.image + ')' }"></div>
                 <h3>{{ product.title }}</h3>
                 <h4>{{ product.category }}</h4>
-                <p class="price">{{ product.price.toFixed(2) }}</p>
+                <p class="price">R$ {{formatPrice(product.price) }}</p>
                 <button v-if="!isInBag(product)" @click="addtoBag(product)">Adicionar ao carrinho</button>
                 <button v-else class="remove" @click="this.$store.dispatch('removeFromBag', product.id)">Remover o
                     produto do carrinho</button>
@@ -46,7 +46,11 @@ export default {
             let productId = this.$route.params.id
             const product = this.products.find(item =>  item.id == productId)
             this.product = product
-        }
+        },
+        formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    }
     }
 }
 </script>

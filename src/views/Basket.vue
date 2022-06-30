@@ -13,10 +13,10 @@
                   <span class="quantity">{{product.quantity}}</span>
                   <button  @click="product.quantity++">+</button>
                 </span>
-                <span class="amount">R$ {{(product.price * product.quantity).toFixed(2)}}</span>
+                <span class="amount">R$ {{formatPrice(product.price) }}</span>
               </div>
             </div>
-            <div class="grand-total"> Total do pedido: R$ {{orderTotal()}}</div>
+            <div class="grand-total"> Total do pedido: R$ {{formatPrice(orderTotal())}}</div>
              <button class="button"><span>Finalizar Pedido </span></button>
         </template>
 
@@ -41,7 +41,11 @@ export default {
             total += item.price * item.quantity;
         });
         return total.toFixed(2);
-   }
+   },
+    formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    }
   },
 
   computed: 
