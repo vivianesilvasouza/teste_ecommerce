@@ -36,8 +36,9 @@
         </div>
         <button class="button"><span>Finalizar Pedido </span></button>
       </template>
-
+           
       <template v-else>
+        <i class="material-icons"> shopping_cart </i>
         <Messagevazio />
       </template>
     </div>
