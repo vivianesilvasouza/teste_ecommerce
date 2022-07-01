@@ -1,64 +1,55 @@
 <template>
   <div id="nav">
     <div class="logo">
-      <img src="./assets/yampi-logo.png">
+      <img src="./assets/yampi-logo.png" />
     </div>
     <div class="item search right" tabindex="0">
       <div class="search-group">
-
-        <input type="text">
-        <i class="material-icons search-icon">
-          search
-        </i>
+        <input type="text" />
+        <i class="material-icons search-icon"> search </i>
       </div>
     </div>
 
     <a href="" class="item">
       <div class="group">
         <router-link to="/basket">
-          <i class="material-icons">
-            shopping_cart
-          </i>
+          <i class="material-icons"> shopping_cart </i>
           ({{ this.productsInBag.length }})
         </router-link>
       </div>
     </a>
     <router-link to="/">Home</router-link> -
-      <ul v-for="item in this.categories" :key="item">
-        <router-link :to="'/Categories/'+ item" @click="this.$store.dispatch('filteredItems', item)">
-          <li>{{ item }}</li>
-        </router-link>
-      </ul> </div>
-    <router-view />
- 
+    <ul v-for="item in this.categories" :key="item">
+      <router-link
+        :to="'/Categories/' + item"
+        @click="this.$store.dispatch('filteredItems', item)"
+      >
+        <li>{{ item }}</li>
+      </router-link>
+    </ul>
+  </div>
+  <router-view />
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
+import { mapState } from "vuex";
 
 export default {
-
-  methods: {
-
-  },
+  methods: {},
 
   created() {
-    this.$store.dispatch('loadProducts');
-    this.$store.dispatch('loadCategories');
+    this.$store.dispatch("loadProducts");
+    this.$store.dispatch("loadCategories");
   },
 
-  computed:
-    mapState([
-      'productsInBag', 'categories'
-    ]),
+  computed: mapState(["productsInBag", "categories"]),
 };
 </script>
 
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -67,7 +58,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   max-width: 1280px;
-  margin: 15% auto
+  margin: 15% auto;
 }
 
 #nav {
@@ -82,7 +73,7 @@ export default {
   color: rgb(212, 16, 147);
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   box-sizing: border-box;
 
   .item {
@@ -90,13 +81,12 @@ export default {
     text-decoration: none;
     color: rgb(235, 12, 235);
     color: var(--theme-color);
-
   }
 
   .item.right {
     margin: 0 0 0 auto;
   }
-  
+
   .logo img {
     max-width: 100px;
     max-height: 150px;
@@ -107,7 +97,6 @@ export default {
     display: flex;
     justify-content: center;
     flex-grow: 1;
-
   }
 
   .item.search .search-icon {
@@ -119,7 +108,6 @@ export default {
   }
 
   .item.search .search-icon:hover {
-
     color: black;
   }
 
@@ -143,18 +131,15 @@ export default {
 
     border-color: white;
     color: var(--theme-color);
-
   }
 
   .item .search-group select {
-
     border: 0;
     margin: 2px;
     border-right: 1px solid grey;
     max-width: 5em;
     outline: none;
     color: grey;
-
   }
 
   .item .group {
@@ -164,7 +149,6 @@ export default {
     float: right;
     margin: 10px;
   }
-
 
   .item .group .sub {
     font-size: 0.8em;
@@ -190,9 +174,7 @@ export default {
     .detail,
     .logo .text {
       display: none;
-
     }
-
   }
 
   .action-btn {

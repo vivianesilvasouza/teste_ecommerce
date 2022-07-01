@@ -14,8 +14,8 @@
         <h3>{{ product.title }}</h3>
         <h4>{{ product.category }}</h4>
         <p class="price">R$ {{ formatPrice(product.price) }}</p>
-         <router-link :to="'/product/' + product.id">
-        <button class="button button2"> + Detahes</button>
+        <router-link :to="'/product/' + product.id">
+          <button class="button button2">+ Detahes</button>
         </router-link>
         <button
           class="button button2"
@@ -116,7 +116,6 @@ export default {
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
           0 17px 50px 0 rgba(0, 0, 0, 0.19);
       }
-     
     }
   }
 }

@@ -12,10 +12,10 @@
           :style="{ backgroundImage: 'url(' + product.image + ')' }"
         ></div>
         <h4>{{ product.title }}</h4>
-       
+
         <p class="price">R$ {{ formatPrice(product.price) }}</p>
         <router-link :to="'/product/' + product.id">
-        <button class="button button2"> + Detahes</button>
+          <button class="button button2">+ Detahes</button>
         </router-link>
       </div>
     </div>
@@ -63,7 +63,7 @@ export default {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       padding: 16px;
       margin: 8px;
-      
+
       .product-image {
         margin: 20px auto;
         width: 160px;
@@ -84,7 +84,7 @@ export default {
         font-weight: bold;
       }
       .button {
-        background-color:  rgb(212, 16, 147); 
+        background-color: rgb(212, 16, 147);
         border-radius: 100px;
         color: white;
         border: none;
@@ -99,8 +99,9 @@ export default {
         transition-duration: 0.4s;
       }
       .button2:hover {
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-}
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+          0 17px 50px 0 rgba(0, 0, 0, 0.19);
+      }
     }
   }
 }
