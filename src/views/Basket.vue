@@ -21,7 +21,7 @@
         </template>
 
         <template v-else>
-            <h3>Seu carrinho está vazio</h3>
+           <Messagevazio/>
         </template>
     </div>
   </div>
@@ -29,9 +29,13 @@
 
 <script>
 import { mapState } from 'vuex'
+import Messagevazio from '@/components/basket/Messagevazio.vue';
 
 export default {
   name: 'Basket',
+  components:{
+    Messagevazio
+  },
 
   methods: {
     //total do pedido
