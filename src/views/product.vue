@@ -1,11 +1,12 @@
 <template>
-    <div class="home">
+    <div class="productContainer">
 
         <div class="products">
             <div class="product" :class="{ inBag: isInBag(product) }">
                 <div class="product-image" :style="{ backgroundImage: 'url(' + product.image + ')' }"></div>
-                <h3>{{ product.title }}</h3>
+                <h4>{{ product.title }}</h4>
                 <h4>{{ product.category }}</h4>
+                <p>{{product.description}}</p>
                 <p class="price">R$ {{formatPrice(product.price) }}</p>
                 <button v-if="!isInBag(product)" @click="addtoBag(product)">Adicionar ao carrinho</button>
                 <button v-else class="remove" @click="this.$store.dispatch('removeFromBag', product.id)">Remover o
@@ -56,7 +57,7 @@ export default {
 </script>
 
 <style lang="scss">
-.home {
+.productContainer {
 
     .products {
         display: flex;

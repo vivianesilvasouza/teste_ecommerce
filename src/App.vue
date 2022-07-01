@@ -1,8 +1,7 @@
 <template>
   <div id="nav">
     <div class="logo">
-      <div class="text">Yampi
-      </div>
+      <img src="./assets/yampi-logo.png">
     </div>
     <div class="item search right" tabindex="0">
       <div class="search-group">
@@ -73,14 +72,14 @@ export default {
 
 #nav {
   padding: 16px 0;
-  position: fixed;
+  position: absolute;
   z-index: 1;
   top: 0;
   left: 0;
   width: 100%;
   text-align: center;
-  background-color: rgb(37, 37, 37);
-  color: white;
+  background: #f3f2f3;
+  color: rgb(212, 16, 147);
   margin: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
@@ -89,7 +88,7 @@ export default {
   .item {
     padding: 10px;
     text-decoration: none;
-    color: white;
+    color: rgb(235, 12, 235);
     color: var(--theme-color);
 
   }
@@ -97,21 +96,10 @@ export default {
   .item.right {
     margin: 0 0 0 auto;
   }
-
-  .navbar .logo {
-    font-size: 1.2em;
-    align-items: center;
-    display: flex;
-  }
-
+  
   .logo img {
-    max-width: 40px;
-  }
-
-  .logo .text {
-    margin-left: 20px;
-    font-size: 30px;
-    font-weight: 600;
+    max-width: 100px;
+    max-height: 150px;
   }
 
   .item.search {
@@ -213,11 +201,11 @@ export default {
   }
 
   a {
-    color: white;
+    color: rgb(241, 22, 187);
     text-decoration: none;
 
     &.router-link-exact-active {
-      color: #007bff;
+      color: #07284b;
     }
   }
 

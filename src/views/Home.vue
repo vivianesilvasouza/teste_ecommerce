@@ -1,14 +1,22 @@
 <template>
+  <Banner />
   <div class="home">
-
     <div class="products">
-      <div v-for="(product, index) in this.products" :key="index" class="product" :class="{ inBag: isInBag(product) }">
-          <div class="product-image" :style="{ backgroundImage: 'url(' + product.image + ')' }"></div>
-          <h3>{{ product.title }}</h3>
-          <h4>{{ product.category }}</h4>
-          <p class="price">R$ {{formatPrice(product.price) }}</p>
+      <div
+        v-for="(product, index) in this.products"
+        :key="index"
+        class="product"
+        :class="{ inBag: isInBag(product) }"
+      >
+        <div
+          class="product-image"
+          :style="{ backgroundImage: 'url(' + product.image + ')' }"
+        ></div>
+        <h4>{{ product.title }}</h4>
+       
+        <p class="price">R$ {{ formatPrice(product.price) }}</p>
         <router-link :to="'/product/' + product.id">
-          <li>Detahes</li>
+        <button class="button button2"> + Detahes</button>
         </router-link>
       </div>
     </div>
@@ -16,48 +24,34 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
 export default {
-  name: 'Home',
-  props: {
-      accountBalance: {
-        type: Number,
-        required: true
-      }},
+  name: "Home",
 
   data() {
-    return {
-
-    }
+    return {};
   },
-  computed:
-    mapState([
-      'products', 'productsInBag', 'categories'
-      
-    ]),
+  computed: mapState(["products", "productsInBag", "categories"]),
 
   methods: {
     addtoBag(product) {
       product.quantity = 1;
-      this.$store.dispatch('addtoBag', product);
-
+      this.$store.dispatch("addtoBag", product);
     },
     isInBag(product) {
-      return this.productsInBag.find(item => item.id == product.id)
-    }, 
+      return this.productsInBag.find((item) => item.id == product.id);
+    },
     formatPrice(value) {
-        let val = (value/1).toFixed(2).replace('.', ',')
-        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-    }
-
-  }
-}
+      let val = (value / 1).toFixed(2).replace(".", ",");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    },
+  },
+};
 </script>
 
 <style lang="scss">
 .home {
-
   .products {
     display: flex;
     flex-wrap: wrap;
@@ -70,7 +64,6 @@ export default {
       padding: 16px;
       margin: 8px;
       height: 360px;
-
       @media only screen and (max-width: 769px) {
         flex: 0 0 40%;
       }
@@ -103,6 +96,23 @@ export default {
         font-size: 20px;
         font-weight: bold;
       }
+      .button {
+        background-color:  rgb(212, 16, 147); 
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+      }
+      .button2:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
 
       button {
         color: #fff;
@@ -127,6 +137,5 @@ export default {
       }
     }
   }
-
 }
 </style>

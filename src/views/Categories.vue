@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="categories">
   
     <div class="products">
       <div 
@@ -57,7 +57,7 @@ export default {
 
 <style lang="scss">
 
-  .home {
+  .categories {
 
     .products {
       display: flex;
